@@ -31,6 +31,16 @@ class _ChartScreenState extends State<ChartScreen> {
             scale: 2,
           ),
         ),
+        centerTitle: true,
+        title: const Text(
+          "Card Details",
+          style: TextStyle(
+            fontFamily: "HK Grotesk",
+            fontWeight: FontWeight.w500,
+            fontSize: 20,
+            color: Color(0xFF2F394E),
+          ),
+        ),
         actions: [
           MaterialButton(
             onPressed: () {},
@@ -155,7 +165,99 @@ class _ChartScreenState extends State<ChartScreen> {
               width: size.width,
               height: 219,
               margin: const EdgeInsets.symmetric(horizontal: 24),
-              child: LineChartSample(),
+              child: const LineChartSample(),
+            ),
+            const SizedBox(height: 34),
+            Container(
+              margin: const EdgeInsets.only(left: 24),
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                "Transactions History",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontFamily: "HK Grotesk",
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF2F394E),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: size.width,
+              height: 400,
+              child: ListView.builder(
+                itemCount: Singleton.instance.transactionHistory.length,
+                itemBuilder: ((context, index) {
+                  return Container(
+                    width: size.width,
+                    height: 42,
+                    margin: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      bottom: 16,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 42,
+                          height: 42,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF8F92A1).withOpacity(0.08),
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                Singleton.instance.transactionHistory[index]
+                                    .moneyTransactionArrow,
+                              ),
+                              scale: 1.5,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              Singleton
+                                  .instance.transactionHistory[index].title,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontFamily: "HK Grotesk",
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF030319),
+                              ),
+                            ),
+                            Text(
+                              "${Singleton.instance.transactionHistory[index].date}  |  ${Singleton.instance.transactionHistory[index].time}",
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontFamily: "HK Grotesk",
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF8F92A1),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            Text(
+                              "${Singleton.instance.transactionHistory[index].statues}\$${formatter.format(Singleton.instance.transactionHistory[index].amount)}",
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontFamily: "HK Grotesk",
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF030319),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              ),
             ),
           ],
         ),
