@@ -1,10 +1,46 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 import '/singleton/singleton.dart';
 import '/widgets/payments_cards.dart';
+import '/models/payment_card.dart';
 
-class WalletScreen extends StatelessWidget {
+class WalletScreen extends StatefulWidget {
   const WalletScreen({Key? key}) : super(key: key);
+
+  @override
+  State<WalletScreen> createState() => _WalletScreenState();
+}
+
+class _WalletScreenState extends State<WalletScreen> {
+  late String cardNumber;
+  late String cardName;
+  late String exDate;
+  late String cardHolderName;
+  String cardType = "assets/images/visa_card.png";
+  List<Color> cardBGColor = [
+    Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+    Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+  ];
+  void deletePaymentCard(
+    String cardNumber,
+    String cardName,
+    String exDate,
+    String cardHolderName,
+    String cardType,
+    List<Color> cardBGColor,
+  ) {
+    Singleton.instance.paymentCard.add(
+      PaymentCard(
+        cardNumber: cardNumber,
+        cardName: cardName,
+        exDate: exDate,
+        cardHolderName: cardHolderName,
+        cardType: cardType,
+        cardBGColor: cardBGColor,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +92,26 @@ class WalletScreen extends StatelessWidget {
             return Container(
               width: size.width,
               height: 200,
-              margin: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
-              child: PaymentsCards(index: index),
+              margin: const EdgeInsets.only(bottom: 16),
+              child: MaterialButton(
+                  onPressed: () {
+                    print("CLICKED");
+                  },
+                  onLongPress: () {
+                    print("LONG PRESS");
+                    setState(() {
+                      deletePaymentCard(
+                        cardNumber,
+                        cardName,
+                        exDate,
+                        cardHolderName,
+                        cardType,
+                        cardBGColor,
+                      );
+                      print("Clicked");
+                    });
+                  },
+                  child: PaymentsCards(index: index)),
             );
           },
         ),

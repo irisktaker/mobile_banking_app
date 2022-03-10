@@ -14,6 +14,7 @@ class _CardScreenState extends State<CardScreen> {
   late PageController pageController;
   int currentPage = 0;
 
+
   @override
   void initState() {
     super.initState();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking_app/models/payment_card.dart';
 import 'package:mobile_banking_app/singleton/singleton.dart';
-import 'package:mobile_banking_app/widgets/payments_cards.dart';
+import 'dart:math' as math;
 
 class AddNewCard extends StatefulWidget {
   const AddNewCard({Key? key}) : super(key: key);
@@ -24,8 +24,8 @@ class _AddNewCardState extends State<AddNewCard> {
   String? cardHolderName;
   String cardType = "assets/images/visa_card.png";
   List<Color> cardBGColor = [
-    const Color.fromARGB(255, 68, 52, 241),
-    const Color(0xFF867BF5),
+    Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+    Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
   ];
 
   void addPaymentCard(
@@ -47,6 +47,14 @@ class _AddNewCardState extends State<AddNewCard> {
       ),
     );
   }
+
+  // String setCardType (int index) {
+  //   if(index % 2 == 0) {
+  //     return "assets/images/visa_card.png";
+  //   } else {
+  //     return "assets/images/master_card.png";
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -171,6 +179,8 @@ class _AddNewCardState extends State<AddNewCard> {
                         cardBGColor,
                       );
 
+                      Navigator.pop(context);
+
                       print(cardholderNameController.text);
                       print(cardNumberController.text);
                       print(cardTypeController.text);
@@ -179,13 +189,7 @@ class _AddNewCardState extends State<AddNewCard> {
                       print(cardBGColor);
                     });
                   },
-                  onLongPress: () {
-                    print(cardholderNameController.text);
-                    print(cardNumberController.text);
-                    print(cardTypeController.text);
-                    print(expiryController.text);
-                    print(cvvController.text);
-                  },
+                  onLongPress: () {},
                   style: ElevatedButton.styleFrom(
                     primary: const Color(0xFF608EE9),
                     onPrimary: const Color(0xFFFFFFFF),
