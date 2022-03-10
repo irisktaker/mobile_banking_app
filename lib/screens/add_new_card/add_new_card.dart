@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_banking_app/models/payment_card.dart';
+import 'package:mobile_banking_app/singleton/singleton.dart';
+import 'package:mobile_banking_app/widgets/payments_cards.dart';
 
 class AddNewCard extends StatefulWidget {
   const AddNewCard({Key? key}) : super(key: key);
@@ -14,6 +17,36 @@ class _AddNewCardState extends State<AddNewCard> {
   final TextEditingController cardTypeController = TextEditingController();
   final TextEditingController expiryController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
+
+  String? cardNumber;
+  String? cardName;
+  String? exDate;
+  String? cardHolderName;
+  String cardType = "assets/images/visa_card.png";
+  List<Color> cardBGColor = [
+    const Color.fromARGB(255, 68, 52, 241),
+    const Color(0xFF867BF5),
+  ];
+
+  void addPaymentCard(
+    String cardNumber,
+    String cardName,
+    String exDate,
+    String cardHolderName,
+    String cardType,
+    List<Color> cardBGColor,
+  ) {
+    Singleton.instance.paymentCard.add(
+      PaymentCard(
+        cardNumber: cardNumber,
+        cardName: cardName,
+        exDate: exDate,
+        cardHolderName: cardHolderName,
+        cardType: cardType,
+        cardBGColor: cardBGColor,
+      ),
+    );
+  }
 
   @override
   void dispose() {
@@ -128,13 +161,31 @@ class _AddNewCardState extends State<AddNewCard> {
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 child: ElevatedButton(
                   onPressed: () {
+                    setState(() {
+                      addPaymentCard(
+                        cardNumberController.text,
+                        cardholderNameController.text,
+                        expiryController.text,
+                        cvvController.text,
+                        cardType,
+                        cardBGColor,
+                      );
+
+                      print(cardholderNameController.text);
+                      print(cardNumberController.text);
+                      print(cardTypeController.text);
+                      print(expiryController.text);
+                      print(cvvController.text);
+                      print(cardBGColor);
+                    });
+                  },
+                  onLongPress: () {
                     print(cardholderNameController.text);
                     print(cardNumberController.text);
                     print(cardTypeController.text);
                     print(expiryController.text);
                     print(cvvController.text);
                   },
-                  onLongPress: () {},
                   style: ElevatedButton.styleFrom(
                     primary: const Color(0xFF608EE9),
                     onPrimary: const Color(0xFFFFFFFF),
