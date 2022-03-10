@@ -8,13 +8,33 @@ class LineChartSample extends StatefulWidget {
   _LineChartSampleState createState() => _LineChartSampleState();
 }
 
+final List<double> values = [
+  1.3,
+  4,
+  3,
+  5,
+  6,
+  5.5,
+  6,
+  3,
+  4,
+  5,
+  6,
+  5.5,
+  6,
+];
+
+List<FlSpot> spots = values.asMap().entries.map((e) {
+  return FlSpot(e.key.toDouble(), e.value);
+}).toList();
+
 class _LineChartSampleState extends State<LineChartSample> {
+  bool showAvg = false;
+
   List<Color> gradientColors = [
     const Color(0xffB8BEEE),
     const Color(0xff4151DD),
   ];
-
-  bool showAvg = false;
 
   @override
   Widget build(BuildContext context) {
@@ -113,16 +133,17 @@ class _LineChartSampleState extends State<LineChartSample> {
       maxY: 7,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-            FlSpot(12, 4),
-          ],
+          spots: spots,
+          // const [
+          //   FlSpot(0, 3),
+          //   FlSpot(2.6, 2),
+          //   FlSpot(4.9, 5),
+          //   FlSpot(6.8, 3.1),
+          //   FlSpot(8, 4),
+          //   FlSpot(9.5, 3),
+          //   FlSpot(11, 4),
+          //   FlSpot(12, 4),
+          // ],
           isCurved: true,
           shadow: const Shadow(
             color: Color(0xFFE5E6FB),

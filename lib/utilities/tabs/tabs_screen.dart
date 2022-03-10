@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/add_new_card/add_new_card.dart';
 import '/screens/card/card_screen.dart';
 import '/screens/chart/chart_screen.dart';
 import '/screens/profile/profile_screen.dart';
@@ -76,7 +77,10 @@ class _TabsScreenState extends State<TabsScreen> {
         ),
         child: Center(
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AddNewCard()));
+            },
             backgroundColor: const Color(0xFF608EE9),
             child: Image.asset(
               "assets/icons/send_money.png",

@@ -118,7 +118,7 @@ class Singleton {
 
   List<TransactionHistory> transactionHistory = [
     TransactionHistory(
-      moneyTransactionArrow: "assets/icons/recieved_money.png",
+      moneyTransactionArrow: "assets/icons/send.png",
       title: "UBER Ride",
       date: "27-Apr",
       time: "08:25pm",
@@ -126,7 +126,39 @@ class Singleton {
       statues: "-",
     ),
     TransactionHistory(
+      moneyTransactionArrow: "assets/icons/recieved_money.png",
+      title: "Received Money",
+      date: "25-Apr",
+      time: "10:50am",
+      amount: 2047.00,
+      statues: "+",
+    ),
+    TransactionHistory(
       moneyTransactionArrow: "assets/icons/send.png",
+      title: "Popular Diagonestic ",
+      date: "26-Mar",
+      time: "11:25am",
+      amount: 2076.00,
+      statues: "-",
+    ),
+    TransactionHistory(
+      moneyTransactionArrow: "assets/icons/send.png",
+      title: "Pizza Hut",
+      date: "23-Mar",
+      time: "09:50pm",
+      amount: 354.00,
+      statues: "-",
+    ),
+    TransactionHistory(
+      moneyTransactionArrow: "assets/icons/send.png",
+      title: "UBER Ride",
+      date: "27-Apr",
+      time: "08:25pm",
+      amount: 574.00,
+      statues: "-",
+    ),
+    TransactionHistory(
+      moneyTransactionArrow: "assets/icons/recieved_money.png",
       title: "Received Money",
       date: "25-Apr",
       time: "10:50am",
@@ -139,7 +171,7 @@ class Singleton {
       date: "26-Mar",
       time: "11:25am",
       amount: 2076.00,
-      statues: "-",
+      statues: "+",
     ),
     TransactionHistory(
       moneyTransactionArrow: "assets/icons/send.png",
